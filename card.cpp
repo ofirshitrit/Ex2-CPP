@@ -9,6 +9,10 @@ Card::Card(std::string type, int num)
 {
     this->type = type;
     this->numCard = num;
+    specials[0] = "Ace";
+    specials[1] = "Prince";
+    specials[2] = "Queen";
+    specials[3] = "King";
 }
 
 int Card::compare(Card &other)
@@ -33,9 +37,12 @@ std::string Card::getType()
 };
 
 
-
 std::string Card::toString() {
     std::ostringstream ss;
-    ss << "(" << numCard << "," << type << ")";
+    if(numCard == 1) ss << "(" << specials[0] << "," << type << ")";
+    else if(numCard == 11) ss << "(" << specials[1] << "," << type << ")";
+    else if(numCard == 12) ss << "(" << specials[2] << "," << type << ")";
+    else if(numCard == 13) ss << "(" << specials[3] << "," << type << ")";
+    else ss << "(" << numCard << "," << type << ")";
     return ss.str();
 }
