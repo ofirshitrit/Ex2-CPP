@@ -22,5 +22,5 @@ public:
     Card popCards();
 
     // TODO
-    void pullCards(Card &card);
+    void pullCards(std::vector<Card> cardsOnTable);
 };

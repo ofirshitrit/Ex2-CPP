@@ -3,9 +3,9 @@
 #include "player.hpp"
 using namespace std;
 
-Player::Player(){}
+Player::Player() {}
 
-Player::Player(string name) 
+Player::Player(string name)
 {
     this->name = name;
 }
@@ -21,16 +21,19 @@ int Player::stacksize()
 }
 
 int Player::cardesTaken()
-{   
+{
     return this->cardsTakenStack.size();
 }
 
 Card Player::popCards()
 {
-    this->stack.erase(this->stack.begin()); //pop the 1st element
+    this->stack.erase(this->stack.begin()); // pop the 1st element
 }
 
-void Player::pullCards(Card &card)
+void Player::pullCards(vector<Card> cardsOnTable)
 {
-    this->cardsTakenStack.push_back(card); //change this
+    for (unsigned int i = 0; i < cardsOnTable.size(); i++)
+    {
+        this->stack.push_back(cardsOnTable[i]);
+    }
 }

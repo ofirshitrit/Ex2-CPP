@@ -24,16 +24,10 @@ void Game::playTurn()
     }
     else if (res = BIGGER_CARD)
     {
-        for (unsigned int i = 0; i < this->cardsOnTable.size(); i++)
-        {
-            this->p1.stack.push_back(this->cardsOnTable[i]);
-        }
+        p1.pullCards(cardsOnTable);
     }
     else
     {
-        for (unsigned int i = 0; i < this->cardsOnTable.size(); i++)
-        {
-            this->p2.stack.push_back(this->cardsOnTable[i]);
-        }
+         p2.pullCards(cardsOnTable);
     }
 }
