@@ -5,17 +5,14 @@
 //using namespace std;
 
 class Card {
-    int number;
+    int numCard;
     std::string type;
 public:
-    Card() {
-        // default constructor implementation
-    }
-
-    Card(std::string type, int num) {
-        this->type = type;
-        this->number = num;
-    }
-
+    Card(); 
+    Card(std::string type, int num);
+    int compare(Card other);
+    int getNumCard();
+    std::string getType();
+    std::string toString();
     
 };
