@@ -7,31 +7,19 @@
 //using namespace std;
 
 class Player {
-public:
+
     std::string name;
-    std::queue<Card> cards;
-
+    std::vector<Card> stack;
+    std::vector<Card> cardsTakenStack;
+public:
     Player() {}
+    Player(std::string name);
 
-    Player(std::string name) {
-        this->name = name;
-    }
+    std::string getName();
+    int stacksize();
+    int cardesTaken();
+    void takeCards(Card card);
+    void pullCards();
 
-    int stacksize() {
-        //TODO
-        return 0;
-    }
-
-    int cardesTaken() {
-        //TODO
-        return 0;
-    }
-
-    void pullCard() {
-
-    }
-
-    void takeCards() {
-
-    }
+    
 };
