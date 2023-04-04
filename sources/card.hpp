@@ -16,5 +16,6 @@ public:
     int compare(Card &other);
     int getNumCard();
     std::string getType();
+    std::string toString();
     
 };

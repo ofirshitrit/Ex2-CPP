@@ -1,6 +1,7 @@
 #include "card.hpp"
 #include <iostream>
 #include <string>
+#include <sstream>
 
 Card::Card(){}
 
@@ -31,3 +32,10 @@ std::string Card::getType()
     return this->type;
 };
 
+
+
+std::string Card::toString() {
+    std::ostringstream ss;
+    ss << "(" << numCard << "," << type << ")";
+    return ss.str();
+}

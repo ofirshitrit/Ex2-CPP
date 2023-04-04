@@ -34,6 +34,6 @@ void Player::pullCards(vector<Card> cardsOnTable)
 {
     for (unsigned int i = 0; i < cardsOnTable.size(); i++)
     {
-        this->stack.push_back(cardsOnTable[i]);
+        this->cardsTakenStack.push_back(cardsOnTable[i]);
     }
 }
