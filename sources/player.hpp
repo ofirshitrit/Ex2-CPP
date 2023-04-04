@@ -1,25 +1,26 @@
 
-#pragma once 
+#pragma once
 #include "card.hpp"
 #include <string>
 #include <iostream>
-#include <queue>
-//using namespace std;
+#include <vector>
 
-class Player {
+class Player
+{
 
     std::string name;
+
+public:
     std::vector<Card> stack;
     std::vector<Card> cardsTakenStack;
-public:
-    Player() {}
+    Player();
     Player(std::string name);
 
     std::string getName();
     int stacksize();
     int cardesTaken();
-    void takeCards(Card card);
-    void pullCards();
+    Card popCards();
 
-    
+    // TODO
+    void pullCards(Card &card);
 };

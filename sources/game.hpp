@@ -5,42 +5,26 @@
 #include <string>
 using namespace std;
 
+namespace ariel{}
+
 
 class Game { 
 public:
 
     Player p1;
     Player p2;
-    Card cards[52];
-    Game(Player p1, Player p2) {
-    }
-
-    void playTurn(){
-        //TODO
-    }
-
-    void printLastTurn(){
-        //TODO
-    }
+    std::vector<Card> cardsOnTable;
     
-    void playAll(){
-      //TODO
-    }
+    
+    Game(Player &p1, Player &p2);
 
-    void printWiner(){
-      //TODO
-    }
 
-    void printLog(){
-      //TODO
-    }
-
-    void printStats(){
-      //TODO
-    }
+    //todo
+    void playTurn();
+    void printLastTurn();
+    void playAll();
+    void printWiner();
+    void printLog();
+    void printStats();
 };
 
-namespace ariel
-{
-  
-}

@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-
+Card::Card(){}
 
 Card::Card(std::string type, int num)
 {
@@ -10,14 +10,14 @@ Card::Card(std::string type, int num)
     this->numCard = num;
 }
 
-int Card::compare(Card other)
+int Card::compare(Card &other)
 {
     if((this->getNumCard() - other.getNumCard()) == 0){
-        return 0;
+        return EVEN_CARDS;
     }else if ((this->getNumCard() - other.getNumCard()) > 0){
-        return 1;
+        return BIGGER_CARD;
     }else {
-        return -1;
+        return SMALLER_CARD;
     }
 }
 
@@ -31,7 +31,3 @@ std::string Card::getType()
     return this->type;
 };
 
-std::string Card::toString()\
-{
-    std::cout << "(" << this->getNumCard() << "," << this->getType() << ")" << std::endl;
-}
