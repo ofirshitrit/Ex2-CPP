@@ -6,10 +6,8 @@
 
 Game::Game(Player &p1, Player &p2)
 {
-
     this->p1 = p1;
     this->p2 = p2;
-    numTurn++;
     initStackCards();
     divideCards(cards);
 
@@ -17,6 +15,7 @@ Game::Game(Player &p1, Player &p2)
 
 void Game::playTurn()
 {   
+    if(numTurn > 26) throw std::exception();
 
     Card c1 = this->p1.popCards();
     Card c2 = this->p2.popCards();
@@ -35,7 +34,7 @@ void Game::playTurn()
         playTurn();
         
     }
-    else if (res = BIGGER_CARD)
+    else if (res = C1_IS_BIGGER_CARD)
     {
         p1.pullCards(cardsOnTable);
     }
@@ -43,6 +42,7 @@ void Game::playTurn()
     {
          p2.pullCards(cardsOnTable);
     }
+    numTurn++;
 }
 
 

@@ -4,8 +4,8 @@
 #include <string>
 
 #define EVEN_CARDS 0
-#define BIGGER_CARD 1
-#define SMALLER_CARD -1
+#define C1_IS_BIGGER_CARD 2
+#define C1_IS_SMALLER_CARD -2
 
 class Card {
     int numCard;

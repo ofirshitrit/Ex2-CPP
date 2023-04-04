@@ -16,9 +16,9 @@ int Card::compare(Card &other)
     if((this->getNumCard() - other.getNumCard()) == 0){
         return EVEN_CARDS;
     }else if ((this->getNumCard() - other.getNumCard()) > 0){
-        return BIGGER_CARD;
+        return C1_IS_BIGGER_CARD;
     }else {
-        return SMALLER_CARD;
+        return C1_IS_SMALLER_CARD;
     }
 }
 
