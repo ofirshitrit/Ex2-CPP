@@ -4,8 +4,9 @@
 #include <algorithm>
 #include <random>
 
-Game::Game(Player &p1, Player &p2)
+Game::Game(Player &p1, Player &p2) :p1(p1), p2(p2)
 {
+   // if (&p1 == &p2) throw std::exception(); //if it is the same player
     this->p1 = p1;
     this->p2 = p2;
     initStackCards();

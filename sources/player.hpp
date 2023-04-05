@@ -4,23 +4,20 @@
 #include <string>
 #include <iostream>
 #include <vector>
+using namespace std;
+
 
 class Player
 {
-
-    std::string name;
-
+    string name;
 public:
-    std::vector<Card> stack;
-    std::vector<Card> cardsTakenStack;
-    Player();
-    Player(std::string name);
-
-    std::string getName();
+    vector<Card> stack;
+    vector<Card> cardsTakenStack;
+    
+    Player(string name);
+    string getName();
     int stacksize();
     int cardesTaken();
     Card popCards();
-
-    // TODO
-    void pullCards(std::vector<Card> cardsOnTable);
+    void pullCards(vector<Card> cardsOnTable);
 };

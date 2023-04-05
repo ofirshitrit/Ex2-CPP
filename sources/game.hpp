@@ -11,11 +11,11 @@ namespace ariel{}
 class Game { 
 public:
 
-    Player p1;
-    Player p2;
+    Player &p1;
+    Player &p2;
     std::vector<Card> cardsOnTable;
     std::vector<Card> cards;
-    static int numTurn;
+    int numTurn;
     
     Game(Player &p1, Player &p2);
     void playTurn();
