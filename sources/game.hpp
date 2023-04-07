@@ -5,7 +5,11 @@
 #include <string>
 #define TRUE 1
 #define False 0
+using namespace std;
+#include <stack>
+
 namespace ariel{}
+
 
 
 class Game { 
@@ -13,19 +17,19 @@ public:
 
     Player &p1;
     Player &p2;
-    std::vector<Card> cardsOnTable;
-    std::vector<Card> cards;
+    vector<Card> cardsOnTable;
+    vector<Card> cards;
+    stack<string> turnStatus;
     int numTurn;
     
     Game(Player &p1, Player &p2);
     void playTurn();
     void playAll();
+    void printWiner();
 
     //todo
     
     void printLastTurn();
-    
-    void printWiner();
     void printLog();
     void printStats();
 
