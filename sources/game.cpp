@@ -22,7 +22,7 @@ void Game::playTurn()
     this->cardsOnTable.push_back(c2);
 
     int res = c1.compare(c2);
-    if (res = EVEN_CARDS)
+    if (res == EVEN_CARDS)
     {
         if(p1.stacksize() == 0 || p2.stacksize() == 0)
         {
@@ -32,7 +32,7 @@ void Game::playTurn()
         playTurn();
         
     }
-    else if (res = C1_IS_BIGGER_CARD)
+    else if (res == C1_IS_BIGGER_CARD)
     {
         p1.pullCards(cardsOnTable);
     }
@@ -64,11 +64,11 @@ void Game::printWiner()
 
 void Game::divideCards(std::vector<Card> &cards)
 {
-    for (int i = 0; i < cards.size()/2; i++)
+    for (vector<Card>::size_type i  = 0; i < cards.size()/2; i++)
     {
         this->p1.stack.push_back(cards[i]);
     }
-    for (int i = cards.size()/2; i < cards.size(); i++)
+    for (vector<Card>::size_type i  = cards.size()/2; i < cards.size(); i++)
     {
         this->p2.stack.push_back(cards[i]);
     }

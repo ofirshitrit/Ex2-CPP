@@ -27,7 +27,9 @@ int Player::cardesTaken()
 
 Card Player::popCards()
 {
-    this->stack.erase(this->stack.begin()); // pop the 1st element
+    Card removedCard = this->stack[0];
+    this->stack.erase(this->stack.begin()); // remove the 1st element
+    return removedCard;
 }
 
 void Player::pullCards(vector<Card> cardsOnTable)
