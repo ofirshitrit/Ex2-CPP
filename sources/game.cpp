@@ -6,9 +6,7 @@
 
 Game::Game(Player &p1, Player &p2) :p1(p1), p2(p2)
 {
-   // if (&p1 == &p2) throw std::exception(); //if it is the same player
-    // this->p1 = p1;
-    // this->p2 = p2;
+    if (&p1 == &p2) throw std::exception(); //if it is the same player
     initStackCards();
     divideCards(cards);
 }
@@ -46,7 +44,25 @@ void Game::playTurn()
 }
 
 
-void Game::divideCards(std::vector<Card> cards)
+void Game::playAll()
+{
+    while(this->p1.stacksize() > 0 && this->p2.stacksize() > 0){
+        playTurn();
+    }
+}
+
+void Game::printWiner()
+{
+    if (this->p1.cardesTaken() > this->p2.cardesTaken()){
+        cout << this->p1.getName() << "is the winner!" << endl;
+    }else if(this->p1.cardesTaken() < this->p2.cardesTaken()){
+         cout << this->p2.getName() << "is the winner!" << endl;
+    }else{
+         cout << "no one wins!" << endl;
+    }
+}
+
+void Game::divideCards(std::vector<Card> &cards)
 {
     for (int i = 0; i < cards.size()/2; i++)
     {

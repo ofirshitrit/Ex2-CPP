@@ -7,6 +7,7 @@ using namespace std;
 Player::Player(string name)
 {
     this->name = name;
+
 }
 
 string Player::getName()

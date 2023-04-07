@@ -41,7 +41,7 @@ std::string Card::toString() {
     
     for(int i = 0; i <= 13; i++) {
         if(numCard == i + 1) {
-            ss << "(" << specials[i] << "," << type << ")";
+            ss << "(" << suitNames[i] << "," << type << ")";
             return ss.str();
         }
     }

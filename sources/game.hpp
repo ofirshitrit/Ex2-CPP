@@ -19,17 +19,18 @@ public:
     
     Game(Player &p1, Player &p2);
     void playTurn();
+    void playAll();
 
     //todo
     
     void printLastTurn();
-    void playAll();
+    
     void printWiner();
     void printLog();
     void printStats();
 
  private:
-  void divideCards(std::vector<Card> cards);
+  void divideCards(std::vector<Card> &cards);
   void initStackCards();
   void shuffle();
 
