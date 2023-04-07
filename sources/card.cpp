@@ -2,17 +2,16 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+using namespace std;
 
+string suitNames[] = {"Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"};
 Card::Card(){}
 
 Card::Card(std::string type, int num)
 {
     this->type = type;
     this->numCard = num;
-    specials[0] = "Ace";
-    specials[1] = "Prince";
-    specials[2] = "Queen";
-    specials[3] = "King";
+    
 }
 
 int Card::compare(Card &other)
@@ -38,11 +37,15 @@ std::string Card::getType()
 
 
 std::string Card::toString() {
-    std::ostringstream ss;
-    if(numCard == 1) ss << "(" << specials[0] << "," << type << ")";
-    else if(numCard == 11) ss << "(" << specials[1] << "," << type << ")";
-    else if(numCard == 12) ss << "(" << specials[2] << "," << type << ")";
-    else if(numCard == 13) ss << "(" << specials[3] << "," << type << ")";
-    else ss << "(" << numCard << "," << type << ")";
+     std::ostringstream ss;
+    
+    for(int i = 0; i <= 13; i++) {
+        if(numCard == i + 1) {
+            ss << "(" << specials[i] << "," << type << ")";
+            return ss.str();
+        }
+    }
+    
+    ss << "(" << numCard << "," << type << ")";
     return ss.str();
 }
