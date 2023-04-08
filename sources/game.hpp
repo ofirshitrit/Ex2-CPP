@@ -26,17 +26,19 @@ public:
     void playTurn();
     void playAll();
     void printWiner();
-
-    //todo
-    
     void printLastTurn();
     void printLog();
+
+    //todo
     void printStats();
 
  private:
   void divideCards(std::vector<Card> &cards);
   void initStackCards();
   void shuffle();
+  string getWinner(string name, int num , string type);
+  string getEven( int num , string name1, string type1, string name2 , string type2);
+
 
 };
 

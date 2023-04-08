@@ -3,6 +3,8 @@
 #include "game.hpp"
 #include <algorithm>
 #include <random>
+#include <string>
+#include <sstream>
 
 Game::Game(Player &p1, Player &p2) : p1(p1), p2(p2)
 {
@@ -36,11 +38,14 @@ void Game::playTurn()
     else if (res == C1_IS_BIGGER_CARD)
     {
         p1.pullCards(cardsOnTable);
-        
+        string stats = getWinner(p1.getName(), c1.getNumCard(), c1.getType());
+        turnStatus.push(stats);
     }
     else
     {
         p2.pullCards(cardsOnTable);
+        string stats = getWinner(p2.getName(), c2.getNumCard(), c2.getType());
+        turnStatus.push(stats);
     }
     numTurn++;
 }
@@ -98,6 +103,8 @@ void Game::divideCards(std::vector<Card> &cards)
     }
 }
 
+
+
 void Game::initStackCards()
 {
     for (int i = 1; i <= 13; ++i)
@@ -118,4 +125,18 @@ void Game::shuffle()
 {
     auto rng = std::default_random_engine{};
     std::shuffle(begin(cards), end(cards), rng);
+}
+
+string Game::getWinner(string name, int num, string type)
+{
+    std::ostringstream ss;
+    ss << name << " played " << num << " of " << type << ". " << name << " wins.";
+    return ss.str();
+}
+
+string getEven( int num , string name1, string type1, string name2 , string type2)
+{
+    std::ostringstream ss;
+    ss << name1 << " played " << num << " of " << type1 << " " << name2 << " played " << num << " of " << type2 << ". Draw.";
+    return ss.str();
 }
