@@ -130,13 +130,13 @@ void Game::shuffle()
 string Game::getWinner(int num1, string name1, string type1, int num2, string name2, string type2)
 {
     std::ostringstream ss;
-    ss << name1 << " played " << Numbers[num1 + 1] << " of " << type1 << " " << name2 << " played " << Numbers[num2 + 1] << " of " << type2 << ". " << name1 << " wins." << endl;
+    ss << name1 << " played " << Numbers[num1-1] << " of " << type1 << " " << name2 << " played " << Numbers[num2-1] << " of " << type2 << ". " << name1 << " wins." << endl;
     return ss.str();
 }
 
 string Game::evenMode(int num, string name1, string type1, string name2, string type2)
 {
     std::ostringstream ss;
-    ss << name1 << " played " << Numbers[num + 1] << " of " << type1 << " " << name2 << " played " << Numbers[num + 1] << " of " << type2 << ". Draw." << endl;
+    ss << name1 << " played " << Numbers[num-1] << " of " << type1 << " " << name2 << " played " << Numbers[num-1] << " of " << type2 << ". Draw." << endl;
     return ss.str();
 }
