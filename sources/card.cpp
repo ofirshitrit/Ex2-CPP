@@ -4,7 +4,6 @@
 #include <sstream>
 using namespace std;
 
-string Numbers[] = {"Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"};
 Card::Card(){}
 
 Card::Card(std::string type, int num)
@@ -38,7 +37,8 @@ std::string Card::getType()
 
 std::string Card::toString() {
      std::ostringstream ss;
-    
+    string Numbers[] = {"Ace","2","3","4","5","6","7","8","9","10","Jack","Queen","King"};
+
     for(int i = 0; i <= 13; i++) {
         if(numCard == i + 1) {
             ss << "(" << Numbers[i] << "," << type << ")";

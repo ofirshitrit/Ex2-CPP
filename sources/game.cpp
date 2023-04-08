@@ -5,6 +5,7 @@
 #include <random>
 #include <string>
 #include <sstream>
+string Numbers[] = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
 
 Game::Game(Player &p1, Player &p2) : p1(p1), p2(p2)
 {
@@ -32,19 +33,20 @@ void Game::playTurn()
         {
             divideCards(cardsOnTable);
         }
-
+        string stats = evenMode(c1.getNumCard(), p1.getName(), c1.getType(), p2.getName(), c2.getType());
+        turnStatus.push(stats);
         playTurn();
     }
     else if (res == C1_IS_BIGGER_CARD)
     {
         p1.pullCards(cardsOnTable);
-        string stats = getWinner(p1.getName(), c1.getNumCard(), c1.getType());
+        string stats = getWinner(c1.getNumCard(), p1.getName(), c1.getType(), c2.getNumCard(), p2.getName(), c2.getType());
         turnStatus.push(stats);
     }
     else
     {
         p2.pullCards(cardsOnTable);
-        string stats = getWinner(p2.getName(), c2.getNumCard(), c2.getType());
+        string stats = getWinner(c2.getNumCard(), p2.getName(), c2.getType(), c1.getNumCard(), p1.getName(), c1.getType());
         turnStatus.push(stats);
     }
     numTurn++;
@@ -52,7 +54,7 @@ void Game::playTurn()
 
 void Game::playAll()
 {
-    while (this->p1.stacksize() > 0 && this->p2.stacksize() > 0)
+    while (p1.stacksize() > 0 && p2.stacksize() > 0)
     {
         playTurn();
     }
@@ -78,7 +80,7 @@ void Game::printLastTurn()
 {
     if (!turnStatus.empty())
     {
-        cout << turnStatus.top() << " ";
+        cout << turnStatus.top();
         turnStatus.pop();
     }
 }
@@ -103,8 +105,6 @@ void Game::divideCards(std::vector<Card> &cards)
     }
 }
 
-
-
 void Game::initStackCards()
 {
     for (int i = 1; i <= 13; ++i)
@@ -127,16 +127,16 @@ void Game::shuffle()
     std::shuffle(begin(cards), end(cards), rng);
 }
 
-string Game::getWinner(string name, int num, string type)
+string Game::getWinner(int num1, string name1, string type1, int num2, string name2, string type2)
 {
     std::ostringstream ss;
-    ss << name << " played " << num << " of " << type << ". " << name << " wins.";
+    ss << name1 << " played " << Numbers[num1 + 1] << " of " << type1 << " " << name2 << " played " << Numbers[num2 + 1] << " of " << type2 << ". " << name1 << " wins." << endl;
     return ss.str();
 }
 
-string getEven( int num , string name1, string type1, string name2 , string type2)
+string Game::evenMode(int num, string name1, string type1, string name2, string type2)
 {
     std::ostringstream ss;
-    ss << name1 << " played " << num << " of " << type1 << " " << name2 << " played " << num << " of " << type2 << ". Draw.";
+    ss << name1 << " played " << Numbers[num + 1] << " of " << type1 << " " << name2 << " played " << Numbers[num + 1] << " of " << type2 << ". Draw." << endl;
     return ss.str();
 }

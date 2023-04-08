@@ -30,14 +30,14 @@ public:
     void printLog();
 
     //todo
-    void printStats();
+    //void printStats();
 
  private:
   void divideCards(std::vector<Card> &cards);
   void initStackCards();
   void shuffle();
-  string getWinner(string name, int num , string type);
-  string getEven( int num , string name1, string type1, string name2 , string type2);
+  string getWinner(int num1, string name1, string type1, int num2, string name2, string type2);
+  string evenMode( int num , string name1, string type1, string name2 , string type2);
 
 
 };
