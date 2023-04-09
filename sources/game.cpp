@@ -161,13 +161,10 @@ void Game::printStats()
 
 void Game::divideCards(vector<Card> &cards)
 {
-    for (unsigned i = 0; i < cards.size() / 2; i++)
+   for (unsigned i = 0; i < cards.size()-1; i+=2)
     {
-        this->player1.stack.push_back(cards[i]);
-    }
-    for (unsigned i = cards.size() / 2; i < cards.size(); i++)
-    {
-        this->player2.getStack().push_back(cards[i]);
+        this->player1.getStack().push_back(cards[i]);
+        this->player2.getStack().push_back(cards[i+1]);
     }
 }
 
