@@ -20,28 +20,10 @@ Game::Game(Player &p1, Player &p2) : player1(p1), player2(p2)
     p2_wins = 0;
 }
 
-void Game::printStack(vector<Card> &cards) // TODO - DELETE
-{
-    cout << "SIZE: " << cards.size() << endl;
 
-    for (unsigned int i = 0; i < cards.size(); i++)
-    {
-        cout << cards[i].toString() << " ";
-    }
-    cout << endl;
-}
 
 void Game::playTurn()
 {
-    // cout << "cards: " << endl;
-    // printStack(cards);
-    // cout << endl;
-
-    // cout << "player1 stack: " << endl;
-    // printStack(player1.getStack());
-    // cout << endl;
-    // cout << "player2 stack: " << endl;
-    // printStack(player2.getStack());
 
     if (numTurn > 26)
         throw exception();
@@ -90,16 +72,6 @@ void Game::playTurn()
         p2_wins++;
     }
     numTurn++;
-    // cout << endl;
-    // cout << "card on table: " << endl;
-    // printStack(cardsOnTable);
-    // cout << endl;
-    // cout << "player1 cards taken: " << endl;
-    // printStack(player1.getCardsTakeStack());
-    // cout << endl;
-    // cout << "player2 cards taken: " << endl;
-    // printStack(player2.getCardsTakeStack());
-    // cout << endl;
     cardsOnTable.clear();
 }
 
@@ -202,4 +174,29 @@ string Game::evenMode(int num, string name1, string type1, string name2, string 
     std::ostringstream ss;
     ss << name1 << " played " << Numbers[num - 1] << " of " << type1 << " " << name2 << " played " << Numbers[num - 1] << " of " << type2 << ". Draw." << endl;
     return ss.str();
+}
+void Game::printStack(vector<Card> &cards) 
+{
+    cout << "SIZE: " << cards.size() << endl;
+
+    for (unsigned int i = 0; i < cards.size(); i++)
+    {
+        cout << cards[i].toString() << " ";
+    }
+    cout << endl;
+}
+
+vector<Card> & Game::getCardsOnTable()
+{
+    return this->cardsOnTable;
+}
+
+vector<Card> & Game::getCards()
+{
+    return this->cards;
+}
+
+ stack<string> & Game::getTurnStatus()
+{
+    return this->turnStatus;
 }
