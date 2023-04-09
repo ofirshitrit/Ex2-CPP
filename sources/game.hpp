@@ -20,8 +20,11 @@ public:
     vector<Card> cardsOnTable;
     vector<Card> cards;
     stack<string> turnStatus;
-    int numTurn;
-    int numDraws;
+    unsigned int numTurn;
+    unsigned int numDraws;
+    unsigned int p1_wins;
+    unsigned int p2_wins;
+    
     
     Game(Player &p1, Player &p2);
     void playTurn();

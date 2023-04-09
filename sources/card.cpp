@@ -6,7 +6,7 @@ using namespace std;
 
 Card::Card(){}
 
-Card::Card(std::string type, int num)
+Card::Card(string type, int num)
 {
     this->type = type;
     this->numCard = num;
@@ -29,7 +29,7 @@ int Card::getNumCard()
     return this->numCard;
 };
 
-std::string Card::getType()
+string Card::getType()
 {
     return this->type;
 };

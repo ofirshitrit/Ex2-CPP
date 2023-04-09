@@ -8,15 +8,22 @@
 #define CARDS_AMOUNT 52
 string Numbers[] = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
 
+
 Game::Game(Player &p1, Player &p2) : p1(p1), p2(p2)
 {
-    
+
     initStackCards();
     divideCards(cards);
+    numTurn = 0;
+    numDraws = 0;
+    p1_wins = 0;
+    p2_wins = 0;
 }
 
 void Game::playTurn()
 {
+
+
     if (numTurn > 26) throw exception();
     if (p1.stacksize() == 0 || p2.stacksize() == 0) throw exception();
     if (&p1 == &p2) throw exception(); // if it is the same player
@@ -36,7 +43,7 @@ void Game::playTurn()
         }
         string stats = evenMode(c1.getNumCard(), p1.getName(), c1.getType(), p2.getName(), c2.getType());
         turnStatus.push(stats);
-        
+
         //Draw upside down cards
         Card c1 = this->p1.popCards();
         Card c2 = this->p2.popCards();
@@ -51,14 +58,19 @@ void Game::playTurn()
         p1.pullCards(cardsOnTable);
         string stats = getWinner(c1.getNumCard(), p1.getName(), c1.getType(), c2.getNumCard(), p2.getName(), c2.getType());
         turnStatus.push(stats);
+        p1_wins++;
     }
     else
     {
         p2.pullCards(cardsOnTable);
         string stats = getWinner(c2.getNumCard(), p2.getName(), c2.getType(), c1.getNumCard(), p1.getName(), c1.getType());
         turnStatus.push(stats);
+        p2_wins++;
     }
     numTurn++;
+
+    cardsOnTable.clear();
+
 }
 
 void Game::playAll()
@@ -103,11 +115,17 @@ void Game::printLog()
 }
 
 void Game::printStats()
-{   
-    int winRateP1 = round(((float(p1.cardesTaken())/CARDS_AMOUNT) * 100));
-    int winRateP2 = round((float(p2.cardesTaken()) / CARDS_AMOUNT) * 100);
-    cout << "WIn rate for " << p1.getName() << " is " << winRateP1 << "%" << endl;
-    cout << "WIn rate for " << p2.getName() << " is " << winRateP2 << "%" << endl;
+{
+    cout << p1.getName() << " status: " << endl;
+    int winRateP1 = (((float)this->p1_wins /numTurn) * 100);
+    cout << "win rate: " << winRateP1 << "% " << endl;
+    cout << "cards taken: " << p1.cardesTaken() <<  endl;
+
+    cout << p2.getName() << " status: " << endl;
+    int winRateP2 = (((float)this->p2_wins /numTurn) * 100);
+    cout << "win rate: " << winRateP2 << "% " << endl;
+    cout << "cards taken: " << p2.cardesTaken() << endl;
+
     cout << "The numer of Draw is: " << numDraws << endl;
 }
 
