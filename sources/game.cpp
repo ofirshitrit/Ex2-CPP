@@ -10,16 +10,16 @@ string Numbers[] = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack",
 
 Game::Game(Player &p1, Player &p2) : p1(p1), p2(p2)
 {
-    if (&p1 == &p2)
-        throw std::exception(); // if it is the same player
+    
     initStackCards();
     divideCards(cards);
 }
 
 void Game::playTurn()
 {
-    if (numTurn > 26)
-        throw std::exception();
+    if (numTurn > 26) throw exception();
+    if (p1.stacksize() == 0 || p2.stacksize() == 0) throw exception();
+    if (&p1 == &p2) throw exception(); // if it is the same player
 
     Card c1 = this->p1.popCards();
     Card c2 = this->p2.popCards();
@@ -103,8 +103,8 @@ void Game::printLog()
 }
 
 void Game::printStats()
-{
-    int winRateP1 = round((float(p1.cardesTaken()) / CARDS_AMOUNT) * 100);
+{   
+    int winRateP1 = round(((float(p1.cardesTaken())/CARDS_AMOUNT) * 100));
     int winRateP2 = round((float(p2.cardesTaken()) / CARDS_AMOUNT) * 100);
     cout << "WIn rate for " << p1.getName() << " is " << winRateP1 << "%" << endl;
     cout << "WIn rate for " << p2.getName() << " is " << winRateP2 << "%" << endl;
