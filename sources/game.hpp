@@ -12,16 +12,6 @@ namespace ariel
 
 class Game
 {
-  Player& player1;
-  Player& player2;
-  unsigned int numTurn;
-  unsigned int numDraws;
-  unsigned int p1_wins;
-  unsigned int p2_wins;
-  vector<Card> cardsOnTable;
-  vector<Card> cards;
-  stack<string> turnStatus;
-
 
 public:
   Game(Player &pl1, Player &pl2);
@@ -33,9 +23,19 @@ public:
   void printStats();
   vector<Card> &getCardsOnTable();
   vector<Card> &getCards();
-   stack<string> &getTurnStatus();
+  stack<string> &getTurnStatus();
 
 private:
+  Player &player1;
+  Player &player2;
+  unsigned int numTurn;
+  unsigned int numDraws;
+  unsigned int p1_wins;
+  unsigned int p2_wins;
+  vector<Card> cardsOnTable;
+  vector<Card> cards;
+  stack<string> turnStatus;
+
   void divideCards(std::vector<Card> &cards);
   void initStackCards();
   void shuffle();
