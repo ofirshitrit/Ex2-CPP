@@ -12,6 +12,10 @@ string Player::getName()
 {
     return this->name;
 }
+vector<Card> Player::getStack()
+{
+    return this->stack;
+}
 
 int Player::stacksize()
 {

@@ -6,16 +6,16 @@
 #include <vector>
 using namespace std;
 
-
 class Player
 {
     string name;
-public:
     vector<Card> stack;
     vector<Card> cardsTakenStack;
-    
+
+public:
     Player(string name);
     string getName();
+    vector<Card> getStack();
     int stacksize();
     int cardesTaken();
     Card popCards();

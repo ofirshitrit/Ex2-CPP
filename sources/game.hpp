@@ -3,10 +3,9 @@
 #include "player.hpp"
 #include <iostream>
 #include <string>
-#define TRUE 1
-#define False 0
-using namespace std;
 #include <stack>
+using namespace std;
+
 
 namespace ariel{}
 
@@ -15,8 +14,8 @@ namespace ariel{}
 class Game { 
 public:
 
-    Player &p1;
-    Player &p2;
+    Player &player1;
+    Player &player2;
     vector<Card> cardsOnTable;
     vector<Card> cards;
     stack<string> turnStatus;
@@ -26,7 +25,7 @@ public:
     unsigned int p2_wins;
     
     
-    Game(Player &p1, Player &p2);
+    Game(Player &pl1, Player &pl2);
     void playTurn();
     void playAll();
     void printWiner();
