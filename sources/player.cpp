@@ -12,9 +12,15 @@ string Player::getName()
 {
     return this->name;
 }
-vector<Card> Player::getStack()
+vector<Card> & Player::getStack()
 {
     return this->stack;
+}
+
+
+vector<Card> & Player::getCardsTakeStack()
+{
+    return this->cardsTakenStack;
 }
 
 int Player::stacksize()

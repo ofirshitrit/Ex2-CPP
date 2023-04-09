@@ -8,25 +8,47 @@
 #define CARDS_AMOUNT 52
 string Numbers[] = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
 
-
 Game::Game(Player &p1, Player &p2) : player1(p1), player2(p2)
 {
 
     initStackCards();
     divideCards(cards);
+    
     numTurn = 0;
     numDraws = 0;
     p1_wins = 0;
     p2_wins = 0;
 }
 
+void Game::printStack(vector<Card> &cards) // TODO - DELETE
+{
+    cout << "SIZE: " << cards.size() << endl;
+
+    for (unsigned int i = 0; i < cards.size(); i++)
+    {
+        cout << cards[i].toString() << " ";
+    }
+    cout << endl;
+}
+
 void Game::playTurn()
 {
+    // cout << "cards: " << endl;
+    // printStack(cards);
+    // cout << endl;
 
+    // cout << "player1 stack: " << endl;
+    // printStack(player1.getStack());
+    // cout << endl;
+    // cout << "player2 stack: " << endl;
+    // printStack(player2.getStack());
 
-    if (numTurn > 26) throw exception();
-    if (player1.stacksize() == 0 || player2.stacksize() == 0) throw exception();
-    if (&player1 == &player2) throw exception(); // if it is the same player
+    if (numTurn > 26)
+        throw exception();
+    if (player1.stacksize() == 0 || player2.stacksize() == 0)
+        throw exception();
+    if (&player1 == &player2)
+        throw exception();
 
     Card c1 = this->player1.popCards();
     Card c2 = this->player2.popCards();
@@ -44,7 +66,7 @@ void Game::playTurn()
         string stats = evenMode(c1.getNumCard(), player1.getName(), c1.getType(), player2.getName(), c2.getType());
         turnStatus.push(stats);
 
-        //Draw upside down cards
+        // Draw upside down cards
         Card c1 = this->player1.popCards();
         Card c2 = this->player2.popCards();
         this->cardsOnTable.push_back(c1);
@@ -68,9 +90,17 @@ void Game::playTurn()
         p2_wins++;
     }
     numTurn++;
-
+    // cout << endl;
+    // cout << "card on table: " << endl;
+    // printStack(cardsOnTable);
+    // cout << endl;
+    // cout << "player1 cards taken: " << endl;
+    // printStack(player1.getCardsTakeStack());
+    // cout << endl;
+    // cout << "player2 cards taken: " << endl;
+    // printStack(player2.getCardsTakeStack());
+    // cout << endl;
     cardsOnTable.clear();
-
 }
 
 void Game::playAll()
@@ -117,25 +147,25 @@ void Game::printLog()
 void Game::printStats()
 {
     cout << player1.getName() << " status: " << endl;
-    int winRateP1 = (((float)this->p1_wins /numTurn) * 100);
+    int winRateP1 = (((float)this->p1_wins / numTurn) * 100);
     cout << "win rate: " << winRateP1 << "% " << endl;
-    cout << "cards taken: " << player1.cardesTaken() <<  endl;
+    cout << "cards taken: " << player1.cardesTaken() << endl;
 
     cout << player2.getName() << " status: " << endl;
-    int winRateP2 = (((float)this->p2_wins /numTurn) * 100);
+    int winRateP2 = (((float)this->p2_wins / numTurn) * 100);
     cout << "win rate: " << winRateP2 << "% " << endl;
     cout << "cards taken: " << player2.cardesTaken() << endl;
 
     cout << "The numer of Draw is: " << numDraws << endl;
 }
 
-void Game::divideCards(std::vector<Card> &cards)
+void Game::divideCards(vector<Card> &cards)
 {
-    for (vector<Card>::size_type i = 0; i < cards.size() / 2; i++)
+    for (unsigned i = 0; i < cards.size() / 2; i++)
     {
-        this->player1.getStack().push_back(cards[i]);
+        this->player1.stack.push_back(cards[i]);
     }
-    for (vector<Card>::size_type i = cards.size() / 2; i < cards.size(); i++)
+    for (unsigned i = cards.size() / 2; i < cards.size(); i++)
     {
         this->player2.getStack().push_back(cards[i]);
     }

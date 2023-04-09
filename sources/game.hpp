@@ -41,7 +41,7 @@ public:
   void shuffle();
   string getWinner(int num1, string name1, string type1, int num2, string name2, string type2);
   string evenMode( int num , string name1, string type1, string name2 , string type2);
-
+  void printStack(vector<Card> &cards);
 
 };
 
