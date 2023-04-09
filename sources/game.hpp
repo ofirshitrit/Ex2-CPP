@@ -21,6 +21,7 @@ public:
     vector<Card> cards;
     stack<string> turnStatus;
     int numTurn;
+    int numDraws;
     
     Game(Player &p1, Player &p2);
     void playTurn();
@@ -30,7 +31,7 @@ public:
     void printLog();
 
     //todo
-    //void printStats();
+    void printStats();
 
  private:
   void divideCards(std::vector<Card> &cards);
