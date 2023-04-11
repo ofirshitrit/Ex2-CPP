@@ -10,10 +10,8 @@ string Numbers[] = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack",
 
 Game::Game(Player &p1, Player &p2) : player1(p1), player2(p2)
 {
-
     initStackCards();
     divideCards(cards);
-    
     numTurn = 0;
     numDraws = 0;
     p1_wins = 0;
@@ -39,13 +37,14 @@ void Game::playTurn()
     this->cardsOnTable.push_back(c2);
 
     int res = c1.compare(c2);
+    string stats;
     if (res == EVEN_CARDS)
     {
         if (player1.stacksize() == 0 || player2.stacksize() == 0)
         {
             divideCards(cardsOnTable);
         }
-        string stats = evenMode(c1.getNumCard(), player1.getName(), c1.getType(), player2.getName(), c2.getType());
+        stats = evenMode(c1.getNumCard(), player1.getName(), c1.getType(), player2.getName(), c2.getType());
         turnStatus.push(stats);
 
         // Draw upside down cards
@@ -59,15 +58,15 @@ void Game::playTurn()
     }
     else if (res == C1_IS_BIGGER_CARD)
     {
-        player1.pullCards(cardsOnTable);
-        string stats = getWinner(c1.getNumCard(), player1.getName(), c1.getType(), c2.getNumCard(), player2.getName(), c2.getType());
+        player1.pullCards(cardsOnTable); 
+        stats = getWinner(c1.getNumCard(), player1.getName(), c1.getType(), c2.getNumCard(), player2.getName(), c2.getType());
         turnStatus.push(stats);
         p1_wins++;
     }
     else
     {
         player2.pullCards(cardsOnTable);
-        string stats = getWinner(c2.getNumCard(), player2.getName(), c2.getType(), c1.getNumCard(), player1.getName(), c1.getType());
+        stats = getWinner(c2.getNumCard(), player2.getName(), c2.getType(), c1.getNumCard(), player1.getName(), c1.getType());
         turnStatus.push(stats);
         p2_wins++;
     }
