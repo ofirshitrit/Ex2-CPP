@@ -14,8 +14,8 @@ class Game
 {
 
 private:
-  Player * player1;
-  Player * player2;
+  Player & player1;
+  Player & player2;
   unsigned int numTurn;
   unsigned int numDraws;
   unsigned int p1_wins;
@@ -25,7 +25,7 @@ private:
   stack<string> turnStatus;
 
 public:
-  Game(Player* pl1, Player* pl2);
+  Game(Player& pl1, Player& pl2);
   void playTurn();
   void playAll();
   void printWiner();
@@ -35,7 +35,7 @@ public:
   vector<Card> &getCardsOnTable();
   vector<Card> &getCards();
   stack<string> &getTurnStatus();
-  void divideCards(std::vector<Card> &cards);
+  void divideCards(vector<Card> &cards);
   void initStackCards();
   void shuffle();
   string getWinner(int num1, string name1, string type1, int num2, string name2, string type2);
