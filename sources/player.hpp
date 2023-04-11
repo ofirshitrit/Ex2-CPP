@@ -23,4 +23,5 @@ private:
     string name;
     vector<Card> stack;
     vector<Card> cardsTakenStack;
+    bool isInGame;
 };

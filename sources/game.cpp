@@ -12,6 +12,7 @@ Game::Game(Player &p1, Player &p2) : player1(p1), player2(p2)
 {
     initStackCards();
     divideCards(cards);
+    
     numTurn = 0;
     numDraws = 0;
     p1_wins = 0;
