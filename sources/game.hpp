@@ -14,8 +14,8 @@ class Game
 {
 
 private:
-  Player & player1;
-  Player & player2;
+  Player * player1;
+  Player * player2;
   unsigned int numTurn;
   unsigned int numDraws;
   unsigned int p1_wins;
@@ -25,7 +25,7 @@ private:
   stack<string> turnStatus;
 
 public:
-  Game(Player& pl1, Player& pl2);
+  Game(Player* pl1, Player* pl2);
   void playTurn();
   void playAll();
   void printWiner();
