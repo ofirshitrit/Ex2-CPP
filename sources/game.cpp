@@ -22,6 +22,7 @@ Game::Game(Player &p1, Player &p2) : player1(p1), player2(p2)
 void Game::playTurn()
 {
 
+    // deal with exceptions
     if (numTurn > 26)
         throw exception();
     if (player1.stacksize() == 0 || player2.stacksize() == 0)
@@ -29,6 +30,7 @@ void Game::playTurn()
     if (&player1 == &player2)
         throw exception();
 
+    // start the game
     Card c1 = this->player1.popCards();
     Card c2 = this->player2.popCards();
 
@@ -36,15 +38,18 @@ void Game::playTurn()
     this->cardsOnTable.push_back(c2);
 
     int res = c1.compare(c2);
-    string stats;
+    string status;
     if (res == EVEN_CARDS)
-    {
+    {   
+        // if the players is in even mode and they ran out of cards 
+        // the cards on the table will diveded between the playes.
         if (player1.stacksize() == 0 || player2.stacksize() == 0)
         {
             divideCards(cardsOnTable);
         }
-        stats = evenMode(c1.getNumCard(), player1.getName(), c1.getType(), player2.getName(), c2.getType());
-        turnStatus.push(stats);
+
+        status = evenMode(c1.getNumCard(), player1.getName(), c1.getType(), player2.getName(), c2.getType());
+        turnStatus.push(status);
 
         // Draw upside down cards
         Card c1 = this->player1.popCards();
